@@ -6,14 +6,14 @@ class BookComponent{
         this.description = document.getElementById("description");
         this.template = `
         <div class="card" style="width: 15rem;">
-        <img src="${this.img}" class="card-img-top" alt="...">        
+        <img src="${img}" class="card-img-top" alt="...">        
             <div class="card-body">
-                <h5 class="card-title">${this.title}</h5>
-                ${new ButtonComponent().template}
+                <h5 class="card-title">${title}</h5>
+                <a href="#" id="btn1" class="btn btn-primary">Show Description</a>
             </div>
         </div>
         `
-            document.addEventListener("click", function(e){
+         document.addEventListener("click", function(e){
                 if(e.target && e.target.id == "btn1"){
                     document.getElementById("root").innerHTML =`
                     <div class="card" style="width: 15rem;">
@@ -41,10 +41,10 @@ class BookComponent{
                     document.getElementById("description").innerHTML = `
                     <h2><strong>Description</strong></h2>
                     `
-                }
-            })
-        }
-    }   
+          }
+       })   
+    }
+} 
 class BookListComponent{
     bookList =[
         {"img":"https://www.bedrockcity.com/content/images/thumbs/0062901_percyjacksontheolympians_550.jpeg","title":"Percy Jackson & the Olympians: The Lightning Thief", "description":"The novel charts the adventures of modern-day twelve-year-old Percy Jackson as he discovers he is a demigod, the son of a mortal woman and the Greek god Poseidon. Percy and his friends Annabeth Chase and Grover Underwood go on a quest to find Zeus's stolen lightning bolt and prevent a war among the gods Zeus, Poseidon, and Hades."},
