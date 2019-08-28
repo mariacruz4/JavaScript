@@ -1,3 +1,67 @@
+class AddComponent{
+    //bonus: the card displays at the bottom below the description
+    constructor(){
+        this.template = `
+        <form style="margin-bottom:20px;">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Image Address</span>
+                </div>
+                <input type="text" id ="img" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+                </div>
+                <input type="text" id="title" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Enter Description</label>
+                <textarea class="form-control" id="description1" rows="3" placeholder="Description..." style="margin-top:10px;"></textarea>
+            </div>
+            <button type="submit" id="submit" class="btn btn-primary">Submit Book</button>
+        </form>
+        `
+            document.addEventListener("click", function(e) {
+                if(e.target && e.target.id == "submit"){
+                let img = document.getElementById("img").value;
+                let title = document.getElementById("title").value;
+                let description1 = document.getElementById("description1").value;
+                document.getElementById("root").innerHTML +=`
+                <div class="card" style="width: 15rem; margin-top: 40%;" >
+                <img src="${img}" class="card-img-top" alt="...">        
+                    <div class="card-body">
+                        <h5 class="card-title">${title}</h5>
+                        <a href="#" id="btn6" class="btn btn-primary">Show Description</a>
+                    </div>
+                </div>
+                    `
+                    document.addEventListener("click", function(e){
+                        if(e.target && e.target.id == "btn6"){
+                            if(document.getElementById(`btn6`).innerText == "Show Description"){
+                            document.getElementById("btn6").innerHTML= "Hide Description"
+                            document.getElementById("btn6").style= "background-color:#dc3545;border-color:#dc3545;box-shadow:0 0 0 .2rem rgba(220,53,69,.5)"
+                            document.getElementById("description").innerHTML = `
+                        <h2 style="z-index:1;"><strong>Description</strong></h2>
+                            <p>${description1}</p>
+                            `
+                        } else if(e.target && e.target.id == "btn6"){
+                            if(document.getElementById(`btn6`).innerText == "Hide Description"){
+                            document.getElementById("btn6").innerHTML = "Show Description"
+                            document.getElementById("btn6").innerHTML = "Show Description"
+                            document.getElementById("btn6").style= "Background:#007bff"
+                            document.getElementById("description").innerHTML = `
+                            <h2 style="z-index:1;"><strong>Description</strong></h2>
+                            `
+                        }
+                    }
+                }
+            }) 
+            }
+        });
+    }
+}
+
 class BookComponent{
     constructor(bookId,img,title, description){
         this.bookId = bookId;
@@ -5,7 +69,7 @@ class BookComponent{
         this.title = title;
         this.description = document.getElementById("description");
         this.template = `
-        <div class="card" style="width: 15rem;">
+        <div class="card" style="width: 15rem;z-index:1;">
         <img src="${img}" class="card-img-top" alt="...">        
             <div class="card-body">
                 <h5 class="card-title">${title}</h5>
@@ -134,5 +198,6 @@ class BookListComponent{
         </div>
         `
 }
+document.getElementById("add").innerHTML = `${new AddComponent().template}`
 document.getElementById("root").innerHTML =  ` ${new BookListComponent().template}`;
 
